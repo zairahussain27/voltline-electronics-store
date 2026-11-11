@@ -1,6 +1,6 @@
 // Tiny hash router: the route is the part after "#". No dependency needed.
 import {useEffect,useState} from 'react';
-const ROUTES=['home','shop','product','wishlist','bag','checkout','orders','login','profile'];
+const ROUTES=['home','shop','product','wishlist','bag','checkout','orders','login','profile','seller-dashboard'];
 const read=()=>ROUTES.includes(location.hash.slice(1))?location.hash.slice(1):'home';
 export const go=r=>{if(location.hash==='#'+r)scrollTo(0,0);else location.hash=r};
 export function useRoute(){

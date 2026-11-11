@@ -7,7 +7,7 @@ import Avatar from '../components/Avatar';
 const COLORS=['#ff3f6c','#7c3aed','#0ea5e9','#10b981','#f59e0b','#111827'];
 
 export default function Profile(){
- const{user,setUser,updateUser,orders,wish,toast,changePassword,deleteAccount,copyCode}=useStore(),[editing,setEditing]=useState(false),[adding,setAdding]=useState(false),[changingPassword,setChangingPassword]=useState(false),[passwordError,setPasswordError]=useState('');
+ const{user,logout,updateUser,orders,wish,toast,changePassword,deleteAccount,copyCode}=useStore(),[editing,setEditing]=useState(false),[adding,setAdding]=useState(false),[changingPassword,setChangingPassword]=useState(false),[passwordError,setPasswordError]=useState('');
  const fileRef=useRef();
  const addrs=user?.addresses||[],data=e=>Object.fromEntries(new FormData(e.target));
  const pick=e=>{
@@ -61,7 +61,7 @@ export default function Profile(){
    </form>:<button className="btn out" onClick={()=>setChangingPassword(true)}>Change password</button>}</div>
    <div className="box"><h4>Quick links</h4><div className="row2"><span>Wishlist</span><b>{wish.length} items</b></div>
     <button className="btn out" style={{margin:'10px 10px 0 0'}} onClick={()=>go('wishlist')}>Open wishlist</button>
-    <button className="btn" style={{marginTop:10}} onClick={()=>{setUser(null);go('home');toast('Logged out')}}>Log out</button></div>
+    <button className="btn" style={{marginTop:10}} onClick={logout}>Log out</button></div>
    <div className="box danger-zone"><h4>Delete account</h4><p style={{color:'var(--mute)'}}>Permanently remove this account and its saved profile details.</p><button className="btn danger" onClick={()=>{if(confirm('Delete your account permanently? This cannot be undone.')){deleteAccount();go('home')}}}>Delete account</button></div>
   </div>
  </>;

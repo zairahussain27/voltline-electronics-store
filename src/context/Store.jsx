@@ -26,6 +26,7 @@ export function StoreProvider({children}){
  const copyCode=v=>{try{navigator.clipboard.writeText(v).catch(()=>{})}catch{}setCoupon(v);toast('Code '+v+' copied and saved for your bag')};
  const setFilter=p=>setF(x=>({...x,lim:8,...p}));
  const updateUser=changes=>{if(!user)return;setUser(u=>u?{...u,...changes}:u);setAccounts(a=>a.map(x=>x.email==user.email?{...x,...changes}:x))};
+ const logout=()=>{setUser(null);try{localStorage.removeItem('vl:user')}catch{};setModal(null);go('home');toast('Logged out')};
  const changePassword=({currentPassword,newPassword})=>{const account=accounts.find(a=>a.email==user?.email);if(!account)return 'Account not found.';if(account.password!==currentPassword)return 'Current password is incorrect.';setAccounts(a=>a.map(x=>x.email==user.email?{...x,password:newPassword}:x));return ''};
  const deleteAccount=()=>{if(!user)return;const email=user.email;setAccounts(a=>a.filter(x=>x.email!==email));setOrders(a=>a.filter(o=>o.email!==email));setUser(null);toast('Account deleted')};
  const loadMore=()=>setF(x=>({...x,lim:x.lim+8}));
@@ -40,7 +41,7 @@ export function StoreProvider({children}){
  const cancelOrder=id=>{setOrders(a=>a.map(o=>o.id==id?{...o,status:'Cancelled'}:o));toast('Order cancelled')};
 
  // Mock auth (no backend): accounts live in localStorage. Never store plain passwords like this in a real app.
- const signup=({name,email,password})=>{const e=email.trim().toLowerCase();if(accounts.some(a=>a.email==e))return 'An account with this email already exists. Please log in.';const account={name:name.trim(),email:e,password,createdAt:new Date().toISOString()};const{password:_p,...safe}=account;setAccounts(a=>[...a,account]);setUser(safe);toast('Account created. Welcome!');return ''};
- const login=({email,password})=>{const u=accounts.find(a=>a.email==email.trim().toLowerCase());if(!u)return 'No account found with this email. Please sign up.';if(u.password!==password)return 'Incorrect password. Please try again.';const{password:_p,...safe}=u;setUser(safe);toast('Welcome back, '+u.name.split(' ')[0]);return ''};
- return <Ctx.Provider value={{cart,items,count,totals,addCart,setQty,wish,toggleWish,orders,placeOrder,cancelOrder,user,setUser,updateUser,changePassword,deleteAccount,login,signup,f,setFilter,loadMore,openCat,browseShop,pid,vi,setVi,openProduct,coupon,setCoupon,copyCode,modal,setModal,toast,tm}}>{children}</Ctx.Provider>;
+ const signup=({name,email,password,role='customer'})=>{const e=email.trim().toLowerCase();if(accounts.some(a=>a.email==e))return 'An account with this email already exists. Please log in.';const account={name:name.trim(),email:e,password,role:role==='seller'?'seller':'customer',createdAt:new Date().toISOString()};const{password:_p,...safe}=account;setAccounts(a=>[...a,account]);setUser(safe);toast(role==='seller'?'Seller account created':'Account created. Welcome!');return ''};
+ const login=({email,password})=>{const u=accounts.find(a=>a.email==email.trim().toLowerCase());if(!u)return 'No account found with this email. Please sign up.';if(u.password!==password)return 'Incorrect password. Please try again.';const{password:_p,...safe}=u;setUser({...safe,role:safe.role||'customer'});toast('Welcome back, '+u.name.split(' ')[0]);return ''};
+ return <Ctx.Provider value={{cart,items,count,totals,addCart,setQty,wish,toggleWish,orders,placeOrder,cancelOrder,user,setUser,logout,updateUser,changePassword,deleteAccount,login,signup,f,setFilter,loadMore,openCat,browseShop,pid,vi,setVi,openProduct,coupon,setCoupon,copyCode,modal,setModal,toast,tm}}>{children}</Ctx.Provider>;
 }
