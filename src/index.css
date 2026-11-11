@@ -295,6 +295,8 @@ pay label{align-items:center}
 .seller-table-row:first-child.seller-table-head{grid-template-columns:1.3fr 1fr .55fr 1fr}.seller-table-row:has(span:nth-child(5)){grid-template-columns:1.1fr 1.4fr 1fr 1fr .8fr}
 .seller-table-row.product-row{grid-template-columns:minmax(180px,1.6fr) 1fr .8fr .6fr .7fr 1fr;min-width:900px}
 .seller-table-row.inventory-row{grid-template-columns:minmax(180px,1.5fr) 1fr .5fr .8fr .8fr;min-width:760px}
+.seller-table-row.seller-table-head.inventory-row{grid-template-columns:minmax(180px,1.5fr) 1fr .5fr .8fr .8fr;white-space:nowrap}
+.seller-table-row.inventory-row>button{text-align:left;justify-self:start;padding:0}
 .seller-table-row.order-row{grid-template-columns:1.2fr 1.5fr .6fr .9fr 1fr;min-width:760px}
 .seller-table-row.order-row.detailed{grid-template-columns:1fr 1.1fr 1.5fr 1.2fr .45fr .8fr .9fr .8fr;min-width:1180px;align-items:start}
 .seller-table-row.order-row select{min-width:112px;height:36px;border:1px solid #d4d5d9;border-radius:4px;padding:0 7px;background:#fff}
