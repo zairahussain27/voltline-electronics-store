@@ -240,3 +240,6 @@ a{color:inherit;text-decoration:none}
 .mega a{display:flex;align-items:center;gap:10px}
 .bh{display:flex;align-items:center;gap:10px}
 aside label .bl{flex:none}
+
+form.f .pay input[type=radio]{width:18px;height:18px;flex:none;padding:0;margin:0}
+pay label{align-items:center}
