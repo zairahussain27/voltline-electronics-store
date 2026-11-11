@@ -12,7 +12,8 @@ import Bag from './pages/Bag';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
 import Auth from './pages/Auth';
-const PAGES={home:Home,shop:Shop,product:Product,wishlist:Wishlist,bag:Bag,checkout:Checkout,orders:Orders,login:Auth};
+import Profile from './pages/Profile';
+const PAGES={home:Home,shop:Shop,product:Product,wishlist:Wishlist,bag:Bag,checkout:Checkout,orders:Orders,login:Auth,profile:Profile};
 export default function App(){
  const route=useRoute(),{setModal,tm,pid}=useStore(),Page=PAGES[route];
  useEffect(()=>setModal(null),[route,setModal]); // close any popup when the page changes

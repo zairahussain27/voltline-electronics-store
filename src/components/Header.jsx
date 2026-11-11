@@ -3,6 +3,7 @@ import {CATS,P} from '../data/products';
 import {useStore} from '../context/Store';
 import {go} from '../router';
 import BrandLogo from './BrandLogo';
+import Avatar from './Avatar';
 const brandsOf=c=>[...new Set(P.filter(p=>p.cat==c).map(p=>p.brand))];
 export default function Header({route}){
  const{f,setFilter,openCat,count,wish,user,setModal,copyCode}=useStore(),[open,setOpen]=useState(false);
@@ -21,7 +22,7 @@ export default function Header({route}){
    </nav>
    <div className="search"><i>⌕</i><input type="search" value={f.q} onChange={search} placeholder="Search for mobiles, laptops, microphones and more" aria-label="Search"/></div>
    <div className="icons">
-    <button className="ic" onClick={()=>user?setModal({t:'profile'}):go('login')}><span>👤</span>{user?user.name.split(' ')[0].slice(0,8):'Profile'}</button>
+    <button className="ic" onClick={()=>user?go('profile'):go('login')}><span className="ic-avatar"><Avatar user={user} size={22}/></span><span className="ic-label">{user?user.name.split(' ')[0].slice(0,8):'Profile'}</span></button>
     <button className="ic" onClick={()=>go('orders')}><span>📦</span>Orders</button>
     <button className="ic" onClick={()=>go('wishlist')}><span>♡</span>Wishlist<b key={wish.length} className="bump">{wish.length}</b></button>
     <button className="ic" onClick={()=>go('bag')}><span>👜</span>Bag<b key={count} className="bump">{count}</b></button>

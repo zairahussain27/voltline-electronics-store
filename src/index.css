@@ -24,6 +24,8 @@ nav{display:flex;height:100%}
 .icons{display:flex;gap:6px;margin-left:auto}
 .ic{background:none;border:0;display:flex;flex-direction:column;align-items:center;font-size:11px;font-weight:700;padding:4px 10px;position:relative;color:var(--ink)}
 .ic span{font-size:20px;line-height:1.1}
+.ic .ic-avatar{width:22px;height:22px;display:grid;place-items:center;font-size:initial;line-height:1.1}
+.ic .ic-label{font-size:11px;line-height:1.45}
 .ic b{position:absolute;top:-2px;right:4px;background:var(--pk);color:#fff;border-radius:9px;min-width:17px;height:17px;font-size:10px;display:grid;place-items:center;padding:0 4px}
 .ic:hover{color:var(--pk)}
 .burger{display:none;font-size:24px;background:none;border:0}
@@ -243,3 +245,15 @@ aside label .bl{flex:none}
 
 form.f .pay input[type=radio]{width:18px;height:18px;flex:none;padding:0;margin:0}
 pay label{align-items:center}
+
+.avatar{object-fit:cover;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;flex:none}
+.sw{width:22px;height:22px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #d4d5d9;margin-right:6px;padding:0;cursor:pointer}
+.acct{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;align-items:start}
+.account-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 16px}
+.account-stats .box{display:flex;flex-direction:column;gap:8px;color:var(--mute)}
+.account-stats strong{color:#282c3f;font-size:22px}
+.default-tag{color:var(--gr);font-size:12px;margin-left:6px}
+.danger-zone{border:1px solid #ffd1d9}
+.danger{background:#d9304f;color:#fff}
+@media(max-width:560px){.acct{grid-template-columns:1fr}}
+@media(max-width:700px){.account-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
