@@ -6,7 +6,7 @@ import useLocal from '../lib/useLocal';
 import {go} from '../router';
 const Ctx=createContext();
 export const useStore=()=>useContext(Ctx);
-const F0={cat:'',q:'',brands:[],pr:0,rate:0,disc:0,sort:'rec',lim:8};
+const F0={cat:'',q:'',brands:[],pr:0,rate:0,disc:0,sort:'rec',lim:8,browse:''};
 
 export function StoreProvider({children}){
  const[cart,setCart]=useLocal('cart',{}),[wish,setWish]=useLocal('wish',[]),[orders,setOrders]=useLocal('orders',[]),[user,setUser]=useLocal('user',null),[accounts,setAccounts]=useLocal('accounts',[{name:'Demo User',email:'demo@voltline.com',password:'demo123'}]);
@@ -30,6 +30,7 @@ export function StoreProvider({children}){
  const deleteAccount=()=>{if(!user)return;const email=user.email;setAccounts(a=>a.filter(x=>x.email!==email));setOrders(a=>a.filter(o=>o.email!==email));setUser(null);toast('Account deleted')};
  const loadMore=()=>setF(x=>({...x,lim:x.lim+8}));
  const openCat=(cat,brand)=>{setF({...F0,cat,brands:brand?[brand]:[]});go('shop')};
+ const browseShop=(cat,browse)=>{setF({...F0,cat,browse,sort:browse==='popular'?'pop':'rec'});go('shop')};
  const openProduct=(id,v=0)=>{setPid(id);setVi(v);go('product')};
  const placeOrder=extra=>{
   const o={id:'VL'+Date.now().toString().slice(-8),total:totals.total,n:count,status:'Confirmed',date:new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}),email:user?.email,...extra,
@@ -41,5 +42,5 @@ export function StoreProvider({children}){
  // Mock auth (no backend): accounts live in localStorage. Never store plain passwords like this in a real app.
  const signup=({name,email,password})=>{const e=email.trim().toLowerCase();if(accounts.some(a=>a.email==e))return 'An account with this email already exists. Please log in.';const account={name:name.trim(),email:e,password,createdAt:new Date().toISOString()};const{password:_p,...safe}=account;setAccounts(a=>[...a,account]);setUser(safe);toast('Account created. Welcome!');return ''};
  const login=({email,password})=>{const u=accounts.find(a=>a.email==email.trim().toLowerCase());if(!u)return 'No account found with this email. Please sign up.';if(u.password!==password)return 'Incorrect password. Please try again.';const{password:_p,...safe}=u;setUser(safe);toast('Welcome back, '+u.name.split(' ')[0]);return ''};
- return <Ctx.Provider value={{cart,items,count,totals,addCart,setQty,wish,toggleWish,orders,placeOrder,cancelOrder,user,setUser,updateUser,changePassword,deleteAccount,login,signup,f,setFilter,loadMore,openCat,pid,vi,setVi,openProduct,coupon,setCoupon,copyCode,modal,setModal,toast,tm}}>{children}</Ctx.Provider>;
+ return <Ctx.Provider value={{cart,items,count,totals,addCart,setQty,wish,toggleWish,orders,placeOrder,cancelOrder,user,setUser,updateUser,changePassword,deleteAccount,login,signup,f,setFilter,loadMore,openCat,browseShop,pid,vi,setVi,openProduct,coupon,setCoupon,copyCode,modal,setModal,toast,tm}}>{children}</Ctx.Provider>;
 }
