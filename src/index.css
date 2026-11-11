@@ -292,13 +292,16 @@ pay label{align-items:center}
 .seller-box-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.seller-box-head h2,.seller-analytics h2{font-size:17px;margin:0}
 .text-action{background:none;border:0;color:var(--pk);font-weight:700}.seller-demo-note,.seller-demo-footnote{color:var(--mute);font-size:12px}.seller-demo-footnote{text-align:center;margin:18px 0}
 .seller-table{width:100%;overflow:auto}.seller-table-row{display:grid;grid-template-columns:1.3fr 1fr .55fr 1fr;gap:14px;align-items:center;min-width:560px;padding:12px 8px;border-bottom:1px solid var(--line)}
-.seller-table-row:first-child.seller-table-head{grid-template-columns:1.3fr 1fr .55fr 1fr}.seller-table-row:has(span:nth-child(5)){grid-template-columns:1.1fr 1.4fr 1fr 1fr .8fr}
+.seller-table-row:first-child.seller-table-head{grid-template-columns:1.3fr 1fr .55fr 1fr}
 .seller-table-row.product-row{grid-template-columns:minmax(180px,1.6fr) 1fr .8fr .6fr .7fr 1fr;min-width:900px}
+.seller-table-row.seller-table-head.product-row{grid-template-columns:minmax(180px,1.6fr) 1fr .8fr .6fr .7fr 1fr;white-space:nowrap}
 .seller-table-row.inventory-row{grid-template-columns:minmax(180px,1.5fr) 1fr .5fr .8fr .8fr;min-width:760px}
 .seller-table-row.seller-table-head.inventory-row{grid-template-columns:minmax(180px,1.5fr) 1fr .5fr .8fr .8fr;white-space:nowrap}
 .seller-table-row.inventory-row>button{text-align:left;justify-self:start;padding:0}
 .seller-table-row.order-row{grid-template-columns:1.2fr 1.5fr .6fr .9fr 1fr;min-width:760px}
+.seller-table-row.seller-table-head.order-row{grid-template-columns:1.2fr 1.5fr .6fr .9fr 1fr;white-space:nowrap}
 .seller-table-row.order-row.detailed{grid-template-columns:1fr 1.1fr 1.5fr 1.2fr .45fr .8fr .9fr .8fr;min-width:1180px;align-items:start}
+.seller-table-row.seller-table-head.order-row.detailed{grid-template-columns:1fr 1.1fr 1.5fr 1.2fr .45fr .8fr .9fr .8fr;white-space:nowrap}
 .seller-table-row.order-row select{min-width:112px;height:36px;border:1px solid #d4d5d9;border-radius:4px;padding:0 7px;background:#fff}
 .seller-table-row.product-row> b{display:flex;align-items:center;gap:9px}
 .seller-thumb{width:38px;height:38px;object-fit:cover;border-radius:4px;background:var(--soft)}
