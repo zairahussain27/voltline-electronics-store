@@ -8,7 +8,8 @@
   "build": "vite build",
   "build:single": "vite build --config vite.single.config.js",
   "preview": "vite preview",
-  "images": "node scripts/images.mjs"
+  "images": "node scripts/images.mjs",
+  "postinstall": "chmod +x node_modules/.bin/vite"
  },
  "dependencies": {
   "react": "^18.3.1",
